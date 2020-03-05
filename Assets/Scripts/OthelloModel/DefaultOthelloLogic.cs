@@ -3,7 +3,7 @@ namespace OthelloModel
 {
     public class DefaultOthelloLogic : OthelloLogicBase
     {
-        public DefaultOthelloLogic(Board board) : base(board)
+        public DefaultOthelloLogic(Board board,PieceColorType startTurn) : base(board,startTurn)
         {
         }
 

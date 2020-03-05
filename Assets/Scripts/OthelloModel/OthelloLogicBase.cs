@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using OthelloModel.Data;
+﻿using OthelloModel.Data;
 namespace OthelloModel
 {
     public abstract class OthelloLogicBase
@@ -8,19 +6,20 @@ namespace OthelloModel
         public readonly Board Board;
         public PieceColorType Turn { get; protected set; }
         public bool IsEnd { get; protected set; }
-        public OthelloLogicBase(Board board)
+        public OthelloLogicBase(Board board,PieceColorType startTurn)
         {
             Board = board;
+            Turn = startTurn;
         }
-        public virtual bool CanPut(CellPos pos,PieceColorType color)
+        public virtual bool CanPut(CellPos pos)
         {
             return Board.HasPieceByPos(pos);
         }
         protected abstract void RunReverse(CellPos putPos);
-        public virtual void Put(CellPos pos,PieceColorType color)
+        public virtual void Put(CellPos pos)
         {
-            if (!CanPut(pos, color)) return;
-            Board.Put(pos, color);
+            if (!CanPut(pos)) return;
+            Board.Put(pos, Turn);
             RunReverse(pos);
             CheckEnd();
             ChangeTurn();
